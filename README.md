@@ -4,6 +4,7 @@
 
 ## Contents
 - [React](#dockerfile-for-react)
+- [NodeJS](#dockerfile-for-nodejs)
 - [Golang](#dockerfile-for-golang)
 - [Java Spring Boot](#dockerfile-for-java-spring-boot)
 - [Java Quarkus](#dockerfile-for-java-quarkus)
@@ -114,6 +115,34 @@ http {
         }
     }
 }
+```
+
+## Dockerfile for NodeJS
+ExpressJS
+with yarn
+```
+FROM node:20-alpine
+
+WORKDIR /usr/src/app
+
+COPY package*.json yarn*.lock ./
+RUN yarn install --frozen-lockfile
+COPY . .
+
+ENTRYPOINT ["yarn"]
+```
+NestJS
+with yarn
+```
+FROM node:20-alpine
+
+WORKDIR /usr/src/app
+
+COPY package*.json yarn*.lock ./
+
+RUN yarn install --frozen-lockfile
+COPY . .
+ENTRYPOINT ["yarn"]
 ```
 
 ## Dockerfile for Golang
